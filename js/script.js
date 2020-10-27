@@ -10,7 +10,6 @@ const $input = $('input');
 
 //  Event Listeners
 $button.on('click', handleAddSkill);
-$ul.on('click', handleDelete);
 
 //  Functions
 
@@ -30,6 +29,11 @@ function handleAddSkill() {
          // Create the UI for a skill
     const $skill =$(`<li><span>X</span> ${skill}</li>` )
          // Push the skill UI into the skills list
+    $skill.on('click', function(){
+        console.log($(this))
+        $(this).remove();
+    })
+
     skills.push($skill);
         //  clear the input tag's value
     $input.val('');
@@ -38,8 +42,11 @@ function handleAddSkill() {
     } else return;
 }
 
-function handleDelete() {
-    alert('Elements inside of ul tag clicked');
+function handleDelete(event) {
+    // console.log(event);
+// $(this).remove();
+$(this).closest('li').remove()
+
 }
 function render() { 
 //  Take the list of skills in the skills array and add them to the UL tags.
